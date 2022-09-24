@@ -32,4 +32,13 @@ describe('test the end point server', () => {
     );
   });
   ////////////////
+  it('get /image/:imageName/:width&:height route ', async () => {
+    const response = await request.get('/image/fjord/200&500');
+    expect(response.statusCode).toEqual(200);
+  });
+  it('get /image/:imageName/:width&:height route , should return a warning text ', async () => {
+    const response = await request.get('/image/fjord/nonexitent');
+    expect(response.statusCode).toEqual(404);
+  });
+  ///////////////
 });

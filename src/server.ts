@@ -6,7 +6,6 @@ import { errorMiddleWare } from './Middlewares/errorMiddleware';
 
 import cors from 'cors';
 import imageRouter from './Routers/imageRouter';
-import { ppid } from 'process';
 
 const app = express();
 
