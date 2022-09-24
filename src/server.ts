@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import http from 'http';
 import body_parser from 'body-parser';
 import morgan from 'morgan';

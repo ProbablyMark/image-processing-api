@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import path from 'path';
 import fs from 'fs';
 
@@ -7,7 +7,7 @@ export function imageDoesExist(
   res: Response,
   next: NextFunction
 ) {
-  let imagePath: string = path.join(
+  const imagePath: string = path.join(
     __dirname,
     `../../assets/images/full/${req.params.imageName}.jpg`
   );

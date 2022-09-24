@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import { getImage, resizeImage } from '../Controllers/imageController';
 import { imageDoesExist } from '../Middlewares/imageFinderMiddleware';
 

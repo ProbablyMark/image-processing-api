@@ -1,24 +1,31 @@
-import express, { NextFunction, Request, Response } from 'express';
-import fs from 'fs';
+import { NextFunction, Request, Response } from 'express';
+
 import path from 'path';
+
 import sharp from 'sharp';
 /////
-export function getImage(req: Request, res: Response) {
-  let imagePath: string = path.join(
+export function getImage(req: Request, res: Response, next: NextFunction) {
+  const imagePath: string = path.join(
     __dirname,
     `../../assets/images/full/${req.params.imageName}.jpg`
   );
   try {
     res.sendFile(imagePath);
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 }
 
-export async function resizeImage(req: Request, res: Response) {
-  let imagePath: string = path.join(
+export async function resizeImage(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const imagePath: string = path.join(
     __dirname,
     `../../assets/images/full/${req.params.imageName}.jpg`
   );
-  let thumbPath: string = path.join(
+  const thumbPath: string = path.join(
     __dirname,
     `../../assets/images/thumb/${
       req.params.imageName + req.params.width + 'x' + req.params.height
@@ -30,5 +37,7 @@ export async function resizeImage(req: Request, res: Response) {
       .toFormat('jpg')
       .toFile(thumbPath);
     res.sendFile(thumbPath);
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 }
