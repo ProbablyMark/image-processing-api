@@ -5,11 +5,16 @@ import { imageDoesExist } from '../Middlewares/imageFinderMiddleware';
 const router = express.Router();
 
 router.get('/', (req: Request, res: Response): void => {
-  // This could be done by serving views ... Just quick and dirty for now :-)
+  // the most simple view just the sake of the api
+  res.sendFile('index.html', { root: './src/Views' });
+});
+router.get('/image', (req: Request, res: Response): void => {
+  // same goes here
   res.send(
-    '<h1>Welcome to image-processing-api</h1><p>Listening at <code><a href="/api/images">/api/images</a></code> for queries containing at least a valid filename. Optionally use both width and height to set the size...</p><p>Examples:<ul><li><a href="/api/images?filename=fjord">/api/images?filename=fjord</a></li><li><a href="/api/images?filename=fjord&width=100&height=100">/api/images?filename=fjord&width=100&height=100</a></li></ul></p>'
+    ' <h1> Please add the image name in the url then add width and height if you wish to resize it</h1>'
   );
 });
+
 router.get('/image/:imageName', imageDoesExist, getImage);
 router.get('/image/:imageName/:width&:height', imageDoesExist, resizeImage);
 

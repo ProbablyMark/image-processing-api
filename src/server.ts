@@ -6,6 +6,7 @@ import { errorMiddleWare } from './Middlewares/errorMiddleware';
 
 import cors from 'cors';
 import imageRouter from './Routers/imageRouter';
+import { ppid } from 'process';
 
 const app = express();
 
@@ -36,3 +37,5 @@ app.use((req: Request, res: Response) => {
 });
 //error MW
 app.use(errorMiddleWare);
+
+export default app;
