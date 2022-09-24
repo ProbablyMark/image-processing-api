@@ -1,6 +1,6 @@
 # image-processing-api
 
-- a full stack project using react for client side and node.js + express for server side , all in TypeScript.
+- an image processing api for resiezing images using node.js,express,js,sharp and jasmine for testing .
 
 # content
 
