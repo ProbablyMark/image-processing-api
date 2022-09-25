@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import path from 'path';
 
-import sharp from 'sharp';
+import { resizeImage } from '../Utilities/imageUtils';
 /////
 export function getImage(req: Request, res: Response, next: NextFunction) {
   const imagePath: string = path.join(
@@ -16,26 +16,17 @@ export function getImage(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export async function resizeImage(
+export async function resizeingImage(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const imagePath: string = path.join(
-    __dirname,
-    `../../assets/images/full/${req.params.imageName}.jpg`
-  );
-  const thumbPath: string = path.join(
-    __dirname,
-    `../../assets/images/thumb/${
-      req.params.imageName + req.params.width + 'x' + req.params.height
-    }.jpg`
-  );
   try {
-    await sharp(imagePath)
-      .resize(parseInt(req.params.width), parseInt(req.params.height))
-      .toFormat('jpg')
-      .toFile(thumbPath);
+    const thumbPath: string = await resizeImage(
+      req.params.imageName,
+      req.params.width,
+      req.params.height
+    );
     res.sendFile(thumbPath);
   } catch (error) {
     next(error);

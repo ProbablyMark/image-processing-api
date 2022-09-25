@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { getImage, resizeImage } from '../Controllers/imageController';
+import { getImage, resizeingImage } from '../Controllers/imageController';
 import { imageDoesExist } from '../Middlewares/imageFinderMiddleware';
 
 const router = express.Router();
@@ -16,6 +16,6 @@ router.get('/image', (req: Request, res: Response): void => {
 });
 
 router.get('/image/:imageName', imageDoesExist, getImage);
-router.get('/image/:imageName/:width&:height', imageDoesExist, resizeImage);
+router.get('/image/:imageName/:width&:height', imageDoesExist, resizeingImage);
 
 export default router;
