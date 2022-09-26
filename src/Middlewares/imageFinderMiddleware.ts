@@ -15,6 +15,6 @@ export function imageDoesExist(
   if (fs.existsSync(imagePath)) {
     next();
   } else {
-    res.send('<h2> Make sure you type the correct name<h2>');
+    res.send('<h2> Make sure you type the correct name</h2>');
   }
 }
