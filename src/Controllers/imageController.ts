@@ -21,13 +21,19 @@ export async function resizeingImage(
   res: Response,
   next: NextFunction
 ) {
+  const width: string = req.params.width;
+  const height: string = req.params.height;
   try {
-    const thumbPath: string = await resizeImage(
-      req.params.imageName,
-      req.params.width,
-      req.params.height
-    );
-    res.sendFile(thumbPath);
+    if (isNaN(Number(width)) || isNaN(Number(height))) {
+      res.send('<h1>please enter valid dimensions and try again </h1>>');
+    } else {
+      const thumbPath: string = await resizeImage(
+        req.params.imageName,
+        req.params.width,
+        req.params.height
+      );
+      res.sendFile(thumbPath);
+    }
   } catch (error) {
     next(error);
   }

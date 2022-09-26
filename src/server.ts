@@ -32,7 +32,11 @@ http.createServer(app).listen(port, async () => {
 app.use(imageRouter);
 //Not found MW
 app.use((req: Request, res: Response) => {
-  res.status(404).send('<h1>404<br>Page not found</h1>');
+  res
+    .status(404)
+    .send(
+      '<h1>404<br>Page not found <br> please enter a valid url including the image name  and in case of resizing add width and height</h1>'
+    );
 });
 //error MW
 app.use(errorMiddleWare);
