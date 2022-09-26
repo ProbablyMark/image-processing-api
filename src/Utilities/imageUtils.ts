@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 
 import sharp from 'sharp';
@@ -16,10 +17,18 @@ export async function resizeImage(
     __dirname,
     `../../assets/images/thumb/${imageName + width + 'x' + height}.jpg`
   );
+  const resize = async () => {
+    await sharp(imagePath)
+      .resize(parseInt(width), parseInt(height))
+      .toFormat('jpg')
+      .toFile(thumbPath);
+  };
+  if (fs.existsSync(thumbPath)) {
+    resize();
+  } else {
+    fs.mkdirSync(path.join(__dirname, '../../assets/images/thumb'));
+    await resize();
+  }
 
-  await sharp(imagePath)
-    .resize(parseInt(width), parseInt(height))
-    .toFormat('jpg')
-    .toFile(thumbPath);
   return thumbPath;
 }
