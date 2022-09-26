@@ -27,8 +27,8 @@ export async function resizeingImage(
     if (
       isNaN(Number(width)) ||
       isNaN(Number(height)) ||
-      Number(width) < 0 ||
-      Number(height) < 0
+      Number(width) <= 0 ||
+      Number(height) <= 0
     ) {
       res.send('<h1>please enter valid dimensions and try again </h1>>');
     } else {
