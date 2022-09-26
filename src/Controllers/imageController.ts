@@ -24,7 +24,12 @@ export async function resizeingImage(
   const width: string = req.params.width;
   const height: string = req.params.height;
   try {
-    if (isNaN(Number(width)) || isNaN(Number(height))) {
+    if (
+      isNaN(Number(width)) ||
+      isNaN(Number(height)) ||
+      Number(width) < 0 ||
+      Number(height) < 0
+    ) {
       res.send('<h1>please enter valid dimensions and try again </h1>>');
     } else {
       const thumbPath: string = await resizeImage(
