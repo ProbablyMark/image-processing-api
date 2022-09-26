@@ -30,7 +30,7 @@ export async function resizeingImage(
       Number(width) <= 0 ||
       Number(height) <= 0
     ) {
-      res.send('<h1>please enter valid dimensions and try again </h1>>');
+      res.send('<h1>please enter valid dimensions and try again </h1>');
     } else {
       const thumbPath: string = await resizeImage(
         req.params.imageName,
