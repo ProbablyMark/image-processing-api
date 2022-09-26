@@ -23,10 +23,8 @@ export async function resizeImage(
       .toFormat('jpg')
       .toFile(thumbPath);
   };
-  if (fs.existsSync(thumbPath)) {
-    resize();
-  } else {
-    fs.mkdirSync(path.join(__dirname, '../../assets/images/thumb'));
+
+  if (!fs.existsSync(thumbPath)) {
     await resize();
   }
 

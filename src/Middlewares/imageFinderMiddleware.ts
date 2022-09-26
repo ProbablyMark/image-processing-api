@@ -11,7 +11,9 @@ export function imageDoesExist(
     __dirname,
     `../../assets/images/full/${req.params.imageName}.jpg`
   );
-
+  if (!fs.existsSync(path.join(__dirname, `../../assets/images/thumb/`))) {
+    fs.mkdirSync(path.join(__dirname, '../../assets/images/thumb'));
+  }
   if (fs.existsSync(imagePath)) {
     next();
   } else {

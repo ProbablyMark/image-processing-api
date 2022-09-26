@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', (req: Request, res: Response): void => {
   // the most simple view just the sake of the api
+
   res.sendFile('index.html', { root: './src/Views' });
 });
 router.get('/image', (req: Request, res: Response): void => {
